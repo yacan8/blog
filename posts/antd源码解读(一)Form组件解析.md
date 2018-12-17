@@ -8,9 +8,11 @@ tags:
 ---
 
 ### 引言
+
 看过antd源码的都知道，antd其实是在一组[react-componment](https://github.com/react-component)组件的基础上进行了一层ui封装，本文主要解读antd组件Form的基础组件[react-componment/form](https://github.com/react-component/form)，另外会略过`development`模式下的warning代码。
 
 ### Form.create
+
 解读源码首先要从自己最常用的或者感兴趣的入手，首先form组件最主要的还是在`Form.create({options})`这个装饰器入手。找到项目下的文件`createForm.js`，这个文件还是主要主要对`createBaseForm.js`文件进行了一层封装，提供了一些默认配置参数，下看查看`createBaseForm.js`里的createBaseForm方法，改方法主要是一个装饰器作用，包装一个高阶React组件，在props里注入一个值为`formPropName(默认为form)`变量，所有功能在这个变量里完成，主要内容如下
 ```js
 render() {
@@ -31,11 +33,14 @@ render() {
 }
 ```
 在装饰器初始化的时候，Form初始化了一个只属于该组件实例的store，用来存放当前Form组件的一些输入的数据，主要代码如下:
+
 ```js
 const fields = mapPropsToFields && mapPropsToFields(this.props);  // mapPropsToFields来自于Form.create的配置参数，用来转化来自mobx或者redux等真正的store来源的value，以初始化该Form实例的fieldsStore
 this.fieldsStore = createFieldsStore(fields || {});  // createFieldsStore来自于文件`createFieldsStore.js`文件
 ```
+
 ### getFieldDecorator
+
 柯里化函数，通过id与参数声明的输入，返回一个函数以输入组件为入参的函数，通过该函数声明的输入组件与表单Form双向数据绑定。
 ```js
   ...
@@ -55,6 +60,7 @@ this.fieldsStore = createFieldsStore(fields || {});  // createFieldsStore来自�
   ...
 ```
 ### getFieldProps
+
 查看函数 `getFieldProps`，主要用来初始化输入组件的props，将特定的函数缓存在内部，如onChange事件，另外初次保存field到store中
 ```js
   ...
@@ -119,6 +125,7 @@ this.fieldsStore = createFieldsStore(fields || {});  // createFieldsStore来自�
   ...
 ```
 ### getCacheBind
+
 `getCacheBind`方法，缓存函数，使用bind方法绑定上下文并缓存部分参数，返回一个新的函数，用做onChange及数据校验。
 ```js
   ...
@@ -136,6 +143,7 @@ this.fieldsStore = createFieldsStore(fields || {});  // createFieldsStore来自�
 ```
 
 ### onCollectCommon
+
 在`getFieldProps`方法中看到利用`getCacheBind`方法当无rules的时候绑定了一个`onCollect`方法，onCollect方法主要调用`onCollectCommon`方法，并将得到的结果保存到store。
 ```js
 onCollectCommon(name, action, args) {
@@ -161,13 +169,17 @@ onCollectCommon(name, action, args) {
 ```
 
 ### onCollectValidate
+
 在有输入rules的时候`getCacheBind`方法绑定`onCollectValidate`作为onChange事件，该方法做了除了调用了onCollectCommon事件以外，还调用了校验方法`validateFieldsInternal`。
 
 ### validateFieldsInternal
+
 该方法主要是从store中获取rules校验规则并标准化后，使用`async-validator`模块进行校验，并把结果保存到store中，本文不做讲解。
 
 ### setFields
+
 该方法主要是设置store中的field，因为store的数据是不可观测的数据，不会引起页面的重渲染，该方法也负责调用`forceUpdate()`强制更新页面。
+
 ```js
 setFields(maybeNestedFields, callback) {
   const fields = this.fieldsStore.flattenRegisteredFields(maybeNestedFields); // 处理field嵌套问题
@@ -182,4 +194,5 @@ setFields(maybeNestedFields, callback) {
 ```
 
 ### 最后
+
 主要方法大概就上面这些，其中流程差不多在每次setFields之前，会在store中存一个field的变化字段`fieldMeta`，在最后强制更新页面的时候，将该变量取出来做处理后覆盖到field，所有数据保存在field中，并提供了一些hock方法如`setFieldsValue`、`validateFields`等方法设置和获取store中的field字段和值。

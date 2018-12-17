@@ -96,7 +96,7 @@ store是对之前说到一个联系和管理。具有如下职责
 强调一下 Redux 应用只有一个单一的`store`。当需要拆分数据处理逻辑时，你应该使用`reducer`组合,而不是创建多个`store`。`store`的创建通过`redux`的`createStore`方法创建，这个方法还需要传入`reducer`，很容易理解：毕竟我需要`dispatch`一个`action`来改变`state`嘛。 应用一般会有一个初始化的`state`，所以可选为第二个参数，这个参数通常是有服务端提供的，传说中的`Universal`渲染。后面会说。。。 第三个参数一般是需要使用的中间件，通过applyMiddleware传入。
 说了这么多，`action`，`store`，`actionCreator`，`reducer`关系就是这么如下的简单明了：
 
-![redux](./redux.png)
+![redux](../images/redux从零到入门笔记/redux.png)
 
 ## 结合react-redux的使用
 `react-redux`，`redux`和`react`的桥梁工具。
