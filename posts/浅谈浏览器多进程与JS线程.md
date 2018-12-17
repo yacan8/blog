@@ -44,7 +44,7 @@ tags:
 
 如下图:
 
-![browse-process1](/images/browse-process/browse-process1.jpg)
+![browse-process1](../images/浅谈浏览器多进程与JS线程/browse-process1.jpg)
 
 ## 浏览器内核
 浏览器内核，即我们的渲染进程，有名Renderer进程，我们页面的渲染，js的执行，事件的循环都在这一进程内进行，也就是说，该进程下面拥有着多个线程，靠着这些现成共同完成渲染任务。那么这些线程是什么呢，如下：
@@ -75,7 +75,7 @@ tags:
 
 浏览器内核，放图加强记忆：
 
-![browse-process2](/images/browse-process/browse-process2.jpg)
+![browse-process2](../images/浅谈浏览器多进程与JS线程/browse-process2.jpg)
 
 ## 为什么JS引擎是单线程的
 JavaScript作为一门客户端的脚本语言，主要的任务是处理用户的交互，而用户的交互无非就是响应DOM的增删改，使用事件队列的形式，一次事件循环只处理一个事件响应，使得脚本执行相对连续。如果JS引擎被设计为多线程的，那么DOM之间必然会存在资源竞争，那么语言的实现会变得非常臃肿，在客户端跑起来，资源的消耗和性能将会是不太乐观的，故设计为单线程的形式，并附加一些其他的线程来实现异步的形式，这样运行成本相对于使用JS多线程来说降低了很多。
@@ -137,7 +137,7 @@ SharedWorker由进程管理，WebWorker是某一个Renderer进程下的线程。
 6. 浏览器会将各层的信息发送给GPU，GPU会将各层合成（composite），显示在屏幕上。
 详细步骤略去，大概步骤如下，渲染完毕后JS引擎开始执行`load`事件，绘制流程见下图。
 
-![browse-process2](/images/browse-process/browse-process3.jpg)
+![browse-process3](../images/浅谈浏览器多进程与JS线程/browse-process3.jpg)
 
 由图中可以看出，css在加载过程中不会影响到DOM树的生成，但是会影响到Render树的生成，进而影响到layout，所以一般来说，style的link标签需要尽量放在head里面，因为在解析DOM树的时候是自上而下的，而css样式又是通过异步加载的，这样的话，解析DOM树下的body节点和加载css样式能尽可能的并行，加快Render树的生成的速度，当然，如果css是通过js动态添加进来的，会引起页面的重绘或重新布局。
 从有html标准以来到目前为止（2017年5月），标准一直是规定style元素不应出现在body元素中。

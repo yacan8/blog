@@ -155,7 +155,7 @@ describe('Button', () => {
 
 执行命令 `npm run test`，结果如下：
 
-![运行结果](/images/Jest+Enzyme进行react项目测试/1.jpg)
+![运行结果](../images/Jest+Enzyme进行react项目测试/1.jpg)
 
 enzyme提供了三种渲染方式，`render`、`mount`、`shallow`，分别存在以下区别：
 
@@ -172,11 +172,11 @@ enzyme还提供了`simulate()`接口模拟事件，实际上simulate是通过触
 
 打开debug配置窗口，在defaults里面找到jest，修改jest的全局配置，选择jest配置文件，如下：
 
-![jest配置](/images/Jest+Enzyme进行react项目测试/2.png)
+![jest配置](../images/Jest+Enzyme进行react项目测试/2.png)
 
 选择完后点击确定，然后找到对应的单元测试文件，点击左边的运行键，如下：
 
-![运行单测](/images/Jest+Enzyme进行react项目测试/3.png)
+![运行单测](../images/Jest+Enzyme进行react项目测试/3.png)
 
 选择 Debug 即可在对应的位置打断点进行调试。
 
