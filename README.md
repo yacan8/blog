@@ -48,4 +48,4 @@
 
 ## 其他
 
-* [Java使用Nashorn，调用Promise实现服务端渲染](./posts/Java使用Nashorn，调用Promise实现服务端渲染.md)
+* [Java使用Nashorn，调用Promise实现服务端渲染](./posts/Java的JavaScript引擎-nashorn.md)
