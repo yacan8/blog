@@ -25,6 +25,7 @@
 ## Vue 相关
 
 * [vue.js学习笔记](./posts/vue.js学习笔记.md)
+* [从react专职到vue开发的项目准备](./posts/从react专职到vue开发的项目准备.md)
 
 ## Webpack 相关
 
