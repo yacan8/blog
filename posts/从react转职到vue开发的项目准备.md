@@ -125,7 +125,7 @@ prop对比：
 
 * Vue中可以在`watch`字段中对prop、data、computed进行对比，然后做相应的操作。在React所有变化需要在声明周期`componentWillReveiveProps`中手动将state和prop进行对比。
 
-对比完后发现，其实Vue给我的个人感觉就是自己在写配置，只不过配置是以函数的形式在写，然后Vue帮你把这些配置好的东西挂载到组件下面。而且prop、data、computed、方法所有都是挂载组件下，其实单单从js语法上很难以理解，比如说我在computed中，想获取data的text数据，使用的是this.text来获取，如果抛开vue，单单用js语法来看，其实this大多情况是指向computed对象的，所以个人觉得这样的语法是反面向对象的。
+对比完后发现，其实Vue给我的个人感觉就是自己在写配置，只不过配置是以函数的形式在写，然后Vue帮你把这些配置好的东西挂载到组件下面。而且prop、data、computed、方法所有都是挂载组件下，其实单单从js语法上很难以理解，比如说我在computed中，想获取data的text数据，使用的是this.text来获取，如果抛开vue，单单用js语法来看，其实this大多情况是指向computed对象的，所以个人觉得这样的语法是反面向对象的。
 
 这个时候在反过来看React的class写法，本来就是属于面向对象的写法，状态state归状态，属性prop归属性，方法归方法，想获取什么内容，通过this直接获取，更接近于JavaScript编程，相对来说比较好理解。
 
