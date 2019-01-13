@@ -25,13 +25,13 @@
 ## Vue 相关
 
 * [vue.js学习笔记](./posts/vue.js学习笔记.md)
-* [从react专职到vue开发的项目准备](./posts/从react专职到vue开发的项目准备.md)
+* [从react专职到vue开发的项目准备](./posts/从react转职到vue开发的项目准备.md)
 
 ## Webpack 相关
 
 * [Webpack入门学习笔记](./posts/webpack入门学习笔记.md)
 * [记一次React项目Webpack4配置过程](./posts/记一次React项目Webpack4配置过程.md)
-* [Webpack插件总结归类](./posts/webpack插件总结归类.md)
+* [Webpack插件总结归类](./posts/webpack插件总结.md)
 
 ## 面试相关
 
