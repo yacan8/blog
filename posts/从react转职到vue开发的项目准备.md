@@ -1,5 +1,5 @@
 ---
-title: 从react专职到vue开发的项目准备
+title: 从react转职到vue开发的项目准备
 date: 2019年01月13日15:47:41
 tags:
 - react
