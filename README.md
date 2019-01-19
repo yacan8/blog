@@ -32,6 +32,7 @@
 * [Webpack入门学习笔记](./posts/webpack入门学习笔记.md)
 * [记一次React项目Webpack4配置过程](./posts/记一次React项目Webpack4配置过程.md)
 * [Webpack插件总结归类](./posts/webpack插件总结.md)
+* [webpack构建和性能优化探索](./posts/webpack构建和性能优化探索.md)
 
 ## 面试相关
 
