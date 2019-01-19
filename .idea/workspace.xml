@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c84299c4-40a9-45de-8812-eaa5cb88d468" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/images/webpack构建和性能优化探索/image-20190119171027893.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/webpack构建和性能优化探索/image-20190119171900475.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/webpack构建和性能优化探索/image-20190119172521201.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/webpack构建和性能优化探索/image-20190119172527996.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/webpack构建和性能优化探索/image-20190119173350929.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/webpack构建和性能优化探索/image-20190119174609909.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/webpack构建和性能优化探索/image-20190119174637136.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/webpack构建和性能优化探索/image-20190119175219987.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/webpack构建和性能优化探索/image-20190119175311844.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/webpack构建和性能优化探索/image-20190119180033334.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/webpack构建和性能优化探索/image-20190119180113456.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/webpack构建和性能优化探索/image-20190119194535595.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/webpack构建和性能优化探索/image-20190119194554573.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts/webpack构建和性能优化探索.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/webpack构建和性能优化探索/image-20190119173350929.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/webpack构建和性能优化探索.md" beforeDir="false" afterPath="$PROJECT_DIR$/posts/webpack构建和性能优化探索.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,9 +32,9 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/posts/webpack构建和性能优化探索.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="34">
-                <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="123">
+                <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
               </first_editor>
               <second_editor />
             </state>
@@ -111,6 +98,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>$USER_HOME$/Library/Application Support/typora-user-images</find>
+      <find>那</find>
+      <find>Development</find>
     </findStrings>
     <replaceStrings>
       <replace>../images/webpack构建和性能优化探索</replace>
@@ -150,6 +139,12 @@
               <item name="blog" type="462c0819:PsiDirectoryNode" />
               <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="blog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blog" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="关于回流与重绘优化的探索" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -186,12 +181,12 @@
       <updated>1546838744714</updated>
       <workItem from="1546838747143" duration="1456000" />
       <workItem from="1547366474973" duration="480000" />
-      <workItem from="1547902680370" duration="253000" />
+      <workItem from="1547902680370" duration="844000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2189000" />
+    <option name="totallyTimeSpent" value="2780000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="834" extended-state="0" />
@@ -293,9 +288,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/posts/webpack构建和性能优化探索.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="34">
-            <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="123">
+            <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
           </first_editor>
           <second_editor />
         </state>
