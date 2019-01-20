@@ -59,12 +59,10 @@ tags:
 
 ```json
 {
-    ...
     "plugins": [
-        ...
         ["import", [
-            { libraryName: 'td-ui', style: true },
-            { libraryName: 'bizcharts', libraryDirectory: 'lib/components' },
+            { "libraryName": "td-ui", "style": true },
+            { "libraryName": "bizcharts", "libraryDirectory": "lib/components" }
         ]]
     ]
 }
@@ -188,7 +186,7 @@ moudle.exports = {
 
 #### 并行编译
 
-由于nodejs为单线程，为了更好利用好电脑多核的特性，我们可以将编译并行开始，这里我们使用`happypack`，当然也可以使用`thread-loader`，我们将babel-loader和样式的loader交给happypck接管。
+由于nodejs为单线程，为了更好利用好电脑多核的特性，我们可以将编译并行开始，这里我们使用`happypack`，当然也可以使用`thread-loader`，我们将babel-loader和样式的loader交给happypack接管。
 
 babel-loader配置如下：
 
