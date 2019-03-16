@@ -415,7 +415,7 @@ for (var i = 0; i < 10; i++) {
 }
 ```
 
-### DebuggerStatement¶
+### DebuggerStatement
 
 debugger语句
 
@@ -675,7 +675,7 @@ interface WhileStatement {
 
 `test`为判定表达式
 
-### 
+### WithStatement
 
 with语句（指定块语句的作用域的作用域）
 
@@ -1356,3 +1356,9 @@ AST的作用大致分为几类
 3. 转换代码的工具。如webpack，rollup，各种代码规范之间的转换，ts，jsx等转换为原生js
 
 了解AST，最终还是为了让我们了解我们使用的工具，当然也让我们更了解JavaScript，更靠近JavaScript。
+
+## 参考文献
+
+* [前端进阶之 Javascript 抽象语法树](https://segmentfault.com/a/1190000015653342)
+
+* [抽象语法树(Abstract Syntax Tree)](https://segmentfault.com/a/1190000014389494)
