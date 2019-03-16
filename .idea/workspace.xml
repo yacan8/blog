@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c84299c4-40a9-45de-8812-eaa5cb88d468" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/posts/webpack构建和性能优化探索.md" beforeDir="false" afterPath="$PROJECT_DIR$/posts/webpack构建和性能优化探索.md" afterDir="false" />
-    </list>
+    <list default="true" id="c84299c4-40a9-45de-8812-eaa5cb88d468" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -31,8 +29,8 @@
         <entry file="file://$PROJECT_DIR$/posts/webpack构建和性能优化探索.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="134">
-                <caret line="187" lean-forward="true" selection-start-line="187" selection-end-line="187" />
+              <first_editor relative-caret-position="119">
+                <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
               </first_editor>
               <second_editor />
             </state>
@@ -179,12 +177,12 @@
       <updated>1546838744714</updated>
       <workItem from="1546838747143" duration="1456000" />
       <workItem from="1547366474973" duration="480000" />
-      <workItem from="1547902680370" duration="1210000" />
+      <workItem from="1547902680370" duration="1626000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3146000" />
+    <option name="totallyTimeSpent" value="3562000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="834" extended-state="0" />
@@ -287,8 +285,8 @@
     <entry file="file://$PROJECT_DIR$/posts/webpack构建和性能优化探索.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="134">
-            <caret line="187" lean-forward="true" selection-start-line="187" selection-end-line="187" />
+          <first_editor relative-caret-position="119">
+            <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
           </first_editor>
           <second_editor />
         </state>
