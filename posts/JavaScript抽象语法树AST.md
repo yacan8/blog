@@ -9,7 +9,7 @@ tags:
 
 ## 前言
 
-Babel为当前最流行的代码JavaScript编译器了，其使用的JavaScript解析器为[babel-parser](https://github.com/babel/babel/tree/master/packages/babel-parser)，最初是从`Acorn` 项目`fork`出来的。Acorn 非常快，易于使用，并且针对非标准特性(以及那些未来的标准特性) 设计了一个基于插件的架构。本文主要介绍[`esprima`](https://github.com/jquery/esprima)解析生成的抽象语法树节点，`esprima`的实现也是基于Acorn的。
+Babel为当前最流行的代码JavaScript编译器了，其使用的JavaScript解析器为[babel-parser](https://github.com/babel/babel/tree/master/packages/babel-parser)，最初是从`Acorn` 项目`fork`出来的。Acorn 非常快，易于使用，并且针对非标准特性(以及那些未来的标准特性) 设计了一个基于插件的架构。本文主要介绍[`esprima`](https://github.com/jquery/esprima)解析生成的抽象语法树节点，`esprima`的实现也是基于Acorn的。
 
 ## 解析器 Parser
 
@@ -920,7 +920,7 @@ interface ClassExpression {
 }
 ```
 
-例如：
+例如：
 
 ```js
 var foo = class {
