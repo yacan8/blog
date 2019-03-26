@@ -350,6 +350,10 @@ interface FunctionDeclaration {
 例如：
 ```js
 function foo() {}
+
+function *bar() { yield "44"; }
+
+async function noop() { await new Promise(function(resolve, reject) { resolve('55'); }) }
 ```
 
 ### ClassDeclaration
@@ -677,7 +681,7 @@ interface WhileStatement {
 
 ### WithStatement
 
-with语句（指定块语句的作用域的作用域）
+with语句（指定块语句的作用域）
 
 ```ts
 interface WithStatement {
@@ -870,11 +874,7 @@ interface FunctionExpression {
 例如：
 
 ```js
-function foo() {}
-
-function *bar() { yield "44"; }
-
-async function noop() { await new Promise(function(resolve, reject) { resolve('55'); }) }
+var foo = function () {}
 ```
 
 ### ArrowFunctionExpression
