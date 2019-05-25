@@ -4,7 +4,7 @@
 
 * [JavaScript常用的设计模式](./posts/JavaScript常用的设计模式.md)
 * [JavaScript原型与原型链的理解](./posts/JavaScript原型与原型链的理解.md)
-* [promise原理](./posts/promise原理.md)
+* [Promise原理](./posts/Promise原理.md)
 * [JavaScript抽象语法树AST](./posts/JavaScript抽象语法树AST.md)
 
 ## Canvas
