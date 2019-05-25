@@ -16,7 +16,7 @@ tags:
 
 先献上[项目github](https://github.com/yacan8/express-vue-web-slush)
 
-## 项目
+## 项目
 
 项目以todolist为🌰，简单的实现了前后端的CURD。
 
@@ -577,7 +577,7 @@ module.exports = {
 };
 ```
 
-在package.json中添加如下script：
+在package.json中添加如下script：
 
 ```json
 {
