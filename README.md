@@ -6,6 +6,7 @@
 * [JavaScript原型与原型链的理解](./posts/JavaScript原型与原型链的理解.md)
 * [Promise原理](./posts/Promise原理.md)
 * [JavaScript抽象语法树AST](./posts/JavaScript抽象语法树AST.md)
+* [JavaScript混淆安全加固](./posts/JavaScript混淆安全加固.md)
 
 ## 全栈
 
