@@ -1,0 +1,11 @@
+.idea/
+node_modules
+
+lib
+.yarn.lock
+build
+log
+release
+dist
+config.properties
+output
