@@ -1,11 +1,5 @@
 .idea/
 node_modules
+.vscode/
 
-lib
-.yarn.lock
-build
-log
-release
-dist
-config.properties
-output
+.DS_Store
