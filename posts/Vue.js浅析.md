@@ -300,7 +300,7 @@ Vue.js 允许采用简洁的模板语法来声明式地将数据渲染出视图�
 
 ### 预编译
 
-对于 Vue 组件来说，模板编译只会在组件实例化的时候编译一次，生成渲染函数之后在也不会进行编译。因此，编译对组件的 runtime 是一种性能损耗。而模板编译的目的仅仅是将`template`转化为`render function`，而这个过程，正好可以在项目构建的过程中完成。
+对于 Vue 组件来说，模板编译只会在组件实例化的时候编译一次，生成渲染函数之后在也不会进行编译。因此，编译对组件的 runtime 是一种性能损耗。而模板编译的目的仅仅是将`template`转化为`render function`，而这个过程，正好可以在项目构建的过程中完成。
 
 比如`webpack`的`vue-loader`依赖了[`vue-template-compiler`](https://www.npmjs.com/package/vue-template-compiler)模块，在 webpack 构建过程中，将`template`预编译成 render 函数，在 runtime 可直接跳过模板编译过程。
 
@@ -332,13 +332,13 @@ export default {
 
 ## 响应式系统
 
-Vue.js 是一款 MVVM 的JS框架，当对数据模型进行修改时，视图会得到更新，即框架帮我们完成了更新DOM的操作，而不需要我们手动的操作DOM。可以这么理解，当我们对数据进行赋值的时候，Vue 告诉了所有依赖该数据模型的组件，你依赖的数据有更新，你需要进行重渲染了，这个时候，组件就会重渲染，完成了视图的更新。
+Vue.js 是一款 MVVM 的JS框架，当对数据模型进行修改时，视图会得到更新，即框架帮我们完成了更新DOM的操作，而不需要我们手动的操作DOM。可以这么理解，当我们对数据进行赋值的时候，Vue 告诉了所有依赖该数据模型的组件，你依赖的数据有更新，你需要进行重渲染了，这个时候，组件就会重渲染，完成了视图的更新。
 
 在 Vue 中，数据模型下的所有属性，会被 Vue 使用`Object.defineProperty`（Vue3.0 使用 Proxy）进行数据劫持代理。响应式的核心机制是观察者模式，数据是被观察的一方，一旦发生变化，通知所有观察者，这样观察者可以做出响应，比如当观察者为视图时，视图可以做出视图的更新。
 
 既然核心是观察者模式，即发布/订阅模式，那依赖收集的作用就是为了做出订阅操作，数据追踪的作用就是为了做出发布操作。
 
-Vue.js 的响应式系统以来三个重要的概念，`Observer`、`Dep`、`Watcher`。
+Vue.js 的响应式系统以来三个重要的概念，`Observer`、`Dep`、`Watcher`。
 
 ### 发布者-Observer
 
@@ -372,20 +372,119 @@ Watcher 扮演的角色是订阅者/观察者，他的主要作用是为观察�
 
 Observer 负责将数据进行拦截，Watcher 负责订阅，观察数据变化， Dep 负责接收订阅并通知 Observer 和接收发布并通知所有 Watcher。
 
-## VNode
+## Virtual DOM
 
-简述
+在 Vue 中，`template`被编译成浏览器可执行的`render function`，然后配合响应式系统，将`render function`挂载在`render-watcher`中，当有数据更改的时候，调度中心`Dep`通知该`render-watcher`执行`render function`，完成视图的渲染与更新。
 
-### 抽象DOM树
+![DOM更新](../images/Vue.js框架浅析/4.png)
+
+整个流程看似通顺，但是当执行`render function`时，如果每次都全量删除并重建 DOM，这对执行性能来说，无疑是一种巨大的损耗，因为我们知道，浏览器的DOM很“昂贵”的，当我们频繁的更新 DOM，会产生一定的性能问题。
+
+为了解决这个问题，Vue 使用 JS 对象将浏览器的 DOM 进行的抽象，这个抽象被称为 Virtual DOM。Virtual DOM 的每个节点被定义为`VNode`，当每次执行`render function`时，Vue 对更新前后的`VNode`进行`Diff`对比，找出尽可能少的我们需要更新的真实 DOM 节点，然后只更新需要更新的节点，从而解决频繁更新 DOM 产生的性能问题。
+
+### VNode
+
+VNode，全程`virtual node`，即虚拟节点，对真实 DOM 节点的虚拟描述，在 Vue 的每一个组件实例中，会挂载一个`$createElement`函数，所有的`VNode`都是由这个函数创建的。
+
+比如创建一个 div：
+
+```js
+// 声明 render function
+render: function (createElement) {
+    // 也可以使用 this.$createElement 创建 VNode
+    return createElement('div', 'hellow world');
+}
+// 以上 render 方法返回html片段 <div>hellow world</div>
+```
+
+render 函数执行后，会根据`VNode Tree`将 VNode 映射生成真实 DOM，从而完成视图的渲染。
 
 ### Diff
 
+Diff 将新老 VNode 节点进行比对，然后将根据两者的比较结果进行最小单位地修改视图，而不是将整个视图根据新的 VNode 重绘，进而达到提升性能的目的。
+
+#### patch
+
+Vue.js 内部的 diff 被称为`patch`。其 diff 算法的是通过同层的树节点进行比较，而非对树进行逐层搜索遍历的方式，所以时间复杂度只有O(n)，是一种相当高效的算法。
+
+![DIFF](../images/Vue.js框架浅析/5.png)
+
+首先定义新老节点是否相同判定函数`sameVnode`：满足键值`key`和标签名`tag`必须一致等条件，返回`true`，否则`false`。
+
+在进行`patch`之前，新老 VNode 是否满足条件`sameVnode(oldVnode, newVnode)`，满足条件之后，进入流程`patchVnode`，否则被判定为不相同节点，此时会移除老节点，创建新节点。
+
+#### patchVnode
+
+patchVnode 的主要作用是判定如何对子节点进行更新，
+
+1. 如果新旧VNode都是静态的，同时它们的key相同（代表同一节点），并且新的 VNode 是 clone 或者是标记了 once（标记v-once属性，只渲染一次），那么只需要替换 DOM 以及 VNode 即可。
+
+2. 新老节点均有子节点，则对子节点进行 diff 操作，进行`updateChildren`，这个 updateChildren 也是 diff 的核心。
+
+3. 如果老节点没有子节点而新节点存在子节点，先清空老节点 DOM 的文本内容，然后为当前 DOM 节点加入子节点。
+
+4. 当新节点没有子节点而老节点有子节点的时候，则移除该 DOM 节点的所有子节点。
+
+5. 当新老节点都无子节点的时候，只是文本的替换。
+
+#### updateChildren
+
+Diff 的核心，对比新老子节点数据，判定如何对子节点进行操作，在对比过程中，由于老的子节点存在对当前真实 DOM 的引用，新的子节点只是一个 VNode 数组，所以在进行遍历的过程中，若发现需要更新真实 DOM 的地方，则会直接在老的子节点上进行真实 DOM 的操作，等到遍历结束，新老子节点则已同步结束。
+
+`updateChildren`内部定义了4个变量，分别是`oldStartIdx`、`oldEndIdx`、`newStartIdx`、`newEndIdx`，分别表示正在 Diff 对比的新老子节点的左右边界点索引，在老子节点数组中，索引在`oldStartIdx`与`oldEndIdx`中间的节点，表示老子节点中为被遍历处理的节点，所以小于`oldStartIdx`或大于`oldEndIdx`的表示未被遍历处理的节点。同理，在新的子节点数组中，索引在`newStartIdx`与`newEndIdx`中间的节点，表示老子节点中为被遍历处理的节点，所以小于`newStartIdx`或大于`newEndIdx`的表示未被遍历处理的节点。
+
+每一次遍历，`oldStartIdx`和`oldEndIdx`与`newStartIdx`和`newEndIdx`之间的距离会向中间靠拢。当 oldStartIdx <= oldEndIdx 或者 newStartIdx <= newEndIdx 时结束循环。
+
+在遍历中，取出4索引对应的 Vnode节点：
+
+* oldStartIdx：oldStartVnode
+* oldEndIdx：oldEndVnode
+* newStartIdx：newStartVnode
+* newEndIdx：newEndVnode
+
+diff过程中，如果存在`key`，并且满足`sameVnode`，会将该 DOM 节点进行复用，否则则会创建一个新的 DOM 节点。
+
+首先，`oldStartVnode`、`oldEndVnode`与`newStartVnode`、`newEndVnode`两两比较，一共有 2*2=4 种比较方法。
+
+情况一：当`oldStartVnode`与`newStartVnode`满足 sameVnode，则`oldStartVnode`与`newStartVnode`进行 patchVnode，并且`oldStartIdx`与`newStartIdx`右移动。
+
+![img](../images/Vue.js框架浅析/6.png)
+
+情况二：与情况一类似，当`oldEndVnode`与`newEndVnode`满足 sameVnode，则`oldEndVnode`与`newEndVnode`进行 patchVnode，并且`oldEndIdx`与`newEndIdx`左移动。
+
+![img](../images/Vue.js框架浅析/7.png)
+
+情况三：当`oldStartVnode`与`newEndVnode`满足 sameVnode，则说明`oldStartVnode`已经跑到了`oldEndVnode`后面去了，此时`oldStartVnode`与`newEndVnode`进行 patchVnode 的同时，还需要将`oldStartVnode`的真实 DOM 节点移动到`oldEndVnode`的后面，并且`oldStartIdx`右移，`newEndIdx`左移。
+
+![img](../images/Vue.js框架浅析/8.png)
+
+情况四：与情况三类似，当`oldEndVnode`与`newStartVnode`满足 sameVnode，则说明`oldEndVnode`已经跑到了`oldStartVnode`前面去了，此时`oldEndVnode`与`newStartVnode`进行 patchVnode 的同时，还需要将`oldEndVnode`的真实 DOM 节点移动到`oldStartVnode`的前面，并且`oldStartIdx`右移，`newEndIdx`左移。
+
+![img](../images/Vue.js框架浅析/9.png)
+
+当这四种情况都不满足，则在`oldStartIdx`与`oldEndIdx`之间查找与`newStartVnode`满足`sameVnode`的节点，若存在，则将匹配的节点真实 DOM 移动到`oldStartVnode`的前面。
+
+![img](../images/Vue.js框架浅析/10.png)
+
+若不存在，说明`newStartVnode`为新节点，创建新节点放在`oldStartVnode`前面即可。
+
+![img](../images/Vue.js框架浅析/11.png)
 
 
+当 oldStartIdx > oldEndIdx 或者 newStartIdx > newEndIdx，循环结束，这个时候我们需要处理那些未被遍历到的 VNode。
 
-## 事件机制
+当 oldStartIdx > oldEndIdx 时，说明老的节点已经遍历完，而新的节点没遍历完，这个时候需要将新的节点创建之后放在`oldEndVnode`后面。
 
-## nextTick
+![img](../images/Vue.js框架浅析/12.png)
+
+当 newStartIdx > newEndIdx 时，说明新的节点已经遍历完，而老的节点没遍历完，这个时候要将没遍历的老的节点全都删除。
+
+![img](../images/Vue.js框架浅析/13.png)
+
+
+此时已经完成了子节点的匹配。下面是一个例子 patch 过程图：
+
+![patchChildren](../images/Vue.js框架浅析/patchChildren.gif)
 
 
 ## 总结
@@ -399,3 +498,5 @@ Observer 负责将数据进行拦截，Watcher 负责订阅，观察数据变化
 * [vue响应式系统--observe、watcher、dep](https://blog.csdn.net/hf872914334/article/details/89098295)
 
 * [Vue.js技术揭秘](https://ustbhuangyi.github.io/vue-analysis/v2/prepare/)
+
+* [VirtualDOM与diff(Vue实现)](https://juejin.im/post/59bfbd736fb9a00a52065ec7)
