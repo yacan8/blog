@@ -1,5 +1,5 @@
 ---
-title: 面试官：聊聊你对Vue.js框架的理解
+title: 面试官：聊聊对Vue.js框架的理解
 date: 2019-12-15 11:28:05
 tags:
 - JavaScript

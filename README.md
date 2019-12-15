@@ -33,6 +33,7 @@
 
 * [vue.js学习笔记](./posts/vue.js学习笔记.md)
 * [从react专职到vue开发的项目准备](./posts/从react转职到vue开发的项目准备.md)
+* [面试官：聊聊对Vue.js框架的理解](./posts/面试官：聊聊对Vue.js框架的理解.md)
 
 ## Webpack 相关
 
