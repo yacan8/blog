@@ -81,9 +81,9 @@ export default {
 
 ### 事件传递
 
-Vue内部实现了一个事件总线系统，即`EventBus`。在Vue中可以使用 EventBus 来作为沟通桥梁的概念，就像是所有组件共用相同的事件中心，每一个Vue的组件实例或者继承了Vue的子类，都可以接受事件`$on`和发送事件`$emit`。
+Vue内部实现了一个事件总线系统，即`EventBus`。在Vue中可以使用 EventBus 来作为沟通桥梁的概念，每一个Vue的组件实例都继承了 `EventBus`，都可以接受事件`$on`和发送事件`$emit`。
 
-如上面一个例子，child.vue 组件想修改 parent.vue 组件的 parentMsg 数据，怎么办呢？为了保证数据流的可追溯性，直接修改组件内 prop 的 msg 字段是不提倡的，且例子中为非应用类型 String，直接修改也修改不了，这个时候需要将修改 parentMsg 的事件传递给 child.vue，让 child.vue 来触发修改 parentMsg 的事件。如：
+如上面一个例子，child.vue 组件想修改 parent.vue 组件的 parentMsg 数据，怎么办呢？为了保证数据流的可追溯性，直接修改组件内 prop 的 msg 字段是不提倡的，且例子中为非引用类型 String，直接修改也修改不了，这个时候需要将修改 parentMsg 的事件传递给 child.vue，让 child.vue 来触发修改 parentMsg 的事件。如：
 
 ```html
 <!-- child.vue -->
@@ -433,7 +433,7 @@ Observer 负责将数据进行拦截，Watcher 负责订阅，观察数据变化
 
 ### VNode
 
-VNode，全程`virtual node`，即虚拟节点，对真实 DOM 节点的虚拟描述，在 Vue 的每一个组件实例中，会挂载一个`$createElement`函数，所有的`VNode`都是由这个函数创建的。
+VNode，全称`virtual node`，即虚拟节点，对真实 DOM 节点的虚拟描述，在 Vue 的每一个组件实例中，会挂载一个`$createElement`函数，所有的`VNode`都是由这个函数创建的。
 
 比如创建一个 div：
 
@@ -541,7 +541,7 @@ diff 过程中，如果存在`key`，并且满足`sameVnode`，会将该 DOM 节
 
 ![final](../images/聊聊对Vue.js框架的理解/final.png)
 
-Vue.js 实现了一套声明式渲染引擎，并在`runtime`或者预编译时将声明式的模板编译成渲染函数，挂载在观察者 Watcher 中，在渲染函数中（touch），响应式系统使用响应式数据的`getter`方法对观察者进行依赖收集（Collect as Dependency），使用响应式数据的`setter`方法通知（notify）所有观察者进行通知更新，此时观察者 Watcher 会触发组件的渲染函数（Trigger re-render），组件执行的 render 函数，生成一个新的 Virtual DOM Tree，此时 Vue 会对新老 Virtual DOM Tree 进行 Diff，查找出需要操作的真实 DOM 并对其进行更新。
+Vue.js 实现了一套声明式渲染引擎，并在`runtime`或者预编译时将声明式的模板编译成渲染函数，挂载在观察者 Watcher 中，在渲染函数中（touch），响应式系统使用响应式数据的`getter`方法对观察者进行依赖收集（Collect as Dependency），使用响应式数据的`setter`方法通知（notify）所有观察者进行更新，此时观察者 Watcher 会触发组件的渲染函数（Trigger re-render），组件执行的 render 函数，生成一个新的 Virtual DOM Tree，此时 Vue 会对新老 Virtual DOM Tree 进行 Diff，查找出需要操作的真实 DOM 并对其进行更新。
 
 ## 参考
 
