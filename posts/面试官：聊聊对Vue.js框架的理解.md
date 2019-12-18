@@ -18,7 +18,7 @@ tags:
 * 了解 Vue.js 的响应式系统原理
 * 了解 Vue.js 中的 Virtual DOM 及 Diff 原理
 
-注：所有内容是基于 Vue2.0 进行准备的，分享`PPT`正在准备中，完成之后在更新分享。
+[分享 keynote](../images/聊聊对Vue.js框架的理解/Vue.js框架原理剖析.key)
 
 ## Vue.js概述
 
