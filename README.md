@@ -12,6 +12,7 @@
 
 * [Java使用Nashorn，调用Promise实现服务端渲染](./posts/Java的JavaScript引擎-nashorn.md)
 * [Vue+Express+Mysql 全栈初体验](./posts/Vue+Express+Mysql全栈初体验.md)
+* [前端赋能业务 - Node实现自动化部署平台](./posts/前端赋能业务-Node实现自动化部署平台.md)
 
 ## Canvas
 
