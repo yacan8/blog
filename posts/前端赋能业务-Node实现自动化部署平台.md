@@ -415,7 +415,7 @@ export default class SupplyService extends Service {
 
 ```js
 export default class SupplyService extends Service {
-    async scp2CDN(supplyId, fileName) {
+    async cp2CDN(supplyId, fileName) {
         // 读取描述文件
         const sdkInfoPath = path.resolve(this.releasePath, '' + supplyId, 'version.json');
         if (!fs.existsSync(sdkInfoPath)) {
