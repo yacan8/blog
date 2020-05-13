@@ -52,7 +52,7 @@ tags:
 
 介绍方案之前，先上一张平台截图，以便先有一个直观的认识：
 
-![img](../images/前端赋能业务-Node实现自动化部署平台/1.jpg)
+![img](https://raw.githubusercontent.com/yacan8/blog/master/images/%E5%89%8D%E7%AB%AF%E8%B5%8B%E8%83%BD%E4%B8%9A%E5%8A%A1-Node%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E5%B9%B3%E5%8F%B0/1.jpg)
 
 SDK自动化部署平台主要实现了JSSDK的编译，发布测试（在线预览），上传CDN功能。
 
@@ -70,7 +70,7 @@ SDK自动化部署平台主要实现了JSSDK的编译，发布测试（在线预
 
 自动化部署平台主要依赖于 GIT + 本地环境 + 私有NPM源 + MYSQL，各环节之间进行通信交互，完成自动化部署。
 
-![img](../images/前端赋能业务-Node实现自动化部署平台/2.jpg)
+![img](https://raw.githubusercontent.com/yacan8/blog/master/images/%E5%89%8D%E7%AB%AF%E8%B5%8B%E8%83%BD%E4%B8%9A%E5%8A%A1-Node%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E5%B9%B3%E5%8F%B0/2.jpg)
 
 主要达到的效果：本地环境拉取git仓库代码后，进行需求开发，完成后发布一个带Rollup的SDK编译器包到私有NPM仓库，自动化部署平台在工程目录安装指定版本的SDK，并且备份到本地，在SDK编译时，选择特定版本的Rollup的SDK编译器，并传参（如appKey，appId等）到编译器中进行编译，同时自动生成JSSDK接入文档等后打包成带描述文件的Release包，在上传到CDN时，将描述文件的对应的信息写入MYSQL中进行保存。
 

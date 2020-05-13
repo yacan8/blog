@@ -47,13 +47,13 @@ tags:
 
 初始构建时候，我们利用`webpack-bundle-analyzer`对编译结果进行分析，结果如下：
 
-![image-20190119171027893](../images/webpack构建和性能优化探索/image-20190119171027893.png)
+![image-20190119171027893](https://raw.githubusercontent.com/yacan8/blog/master/images/webpack%E6%9E%84%E5%BB%BA%E5%92%8C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%8E%A2%E7%B4%A2/image-20190119171027893.png)
 
 可以看到，td-ui（类似于antd的ui组件库）、moment库的locale、BizCharts占了项目的大部分体积，而在没有全部使用这些库的全部内容的情况下，我们可以对齐进行按需加载。
 
 针对td-ui和BizCharts，我们对齐添加按需加载`babel-plugin-import`，这个包可以在使用ES6模块导入的时候，对其进行分析，解析成引入相应文件夹下面的模块，如下：
 
-![image-20190119171900475](../images/webpack构建和性能优化探索/image-20190119171900475.png)
+![image-20190119171900475](https://raw.githubusercontent.com/yacan8/blog/master/images/webpack%E6%9E%84%E5%BB%BA%E5%92%8C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%8E%A2%E7%B4%A2/image-20190119171900475.png)
 
 首先，我们先添加babel的配置，在plugins中加入`babel-plugin-import`:
 
@@ -72,11 +72,11 @@ tags:
 
 编译前：
 
-![image-20190119172521201](../images/webpack构建和性能优化探索/image-20190119172521201.png)
+![image-20190119172521201](https://raw.githubusercontent.com/yacan8/blog/master/images/webpack%E6%9E%84%E5%BB%BA%E5%92%8C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%8E%A2%E7%B4%A2/image-20190119172521201.png)
 
 编译后：
 
-![image-20190119172527996](../images/webpack构建和性能优化探索/image-20190119172527996.png)
+![image-20190119172527996](https://raw.githubusercontent.com/yacan8/blog/master/images/webpack%E6%9E%84%E5%BB%BA%E5%92%8C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%8E%A2%E7%B4%A2/image-20190119172527996.png)
 
 注意：`bizcharts`按需加载需要引入其核心代码`bizcharts/lib/core`;
 
@@ -131,11 +131,11 @@ module.exports = {
 
 Dllplugin配置文件webpack.dll.config.js如下：
 
-![image-20190119174609909](../images/webpack构建和性能优化探索/image-20190119174609909.png)
+![image-20190119174609909](https://raw.githubusercontent.com/yacan8/blog/master/images/webpack%E6%9E%84%E5%BB%BA%E5%92%8C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%8E%A2%E7%B4%A2/image-20190119174609909.png)
 
 dllReference配置文件webpack.dll.reference.config.js如下：
 
-![image-20190119174637136](../images/webpack构建和性能优化探索/image-20190119174637136.png)
+![image-20190119174637136](https://raw.githubusercontent.com/yacan8/blog/master/images/webpack%E6%9E%84%E5%BB%BA%E5%92%8C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%8E%A2%E7%B4%A2/image-20190119174637136.png)
 
 最后使用`webpack-merge`将`webpack.dll.reference.config.js`合并到到webpack配置中。
 
@@ -153,11 +153,11 @@ dllReference配置文件webpack.dll.reference.config.js如下：
 
 首先，我们开启babel-loader自带的缓存功能（默认其实就是打开的）。
 
-![image-20190119175219987](../images/webpack构建和性能优化探索/image-20190119175219987.png)
+![image-20190119175219987](https://raw.githubusercontent.com/yacan8/blog/master/images/webpack%E6%9E%84%E5%BB%BA%E5%92%8C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%8E%A2%E7%B4%A2/image-20190119175219987.png)
 
 另外，开启`uglifyjs-webpack-plugin`的缓存功能。
 
-![image-20190119175311844](../images/webpack构建和性能优化探索/image-20190119175311844.png)
+![image-20190119175311844](https://raw.githubusercontent.com/yacan8/blog/master/images/webpack%E6%9E%84%E5%BB%BA%E5%92%8C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%8E%A2%E7%B4%A2/image-20190119175311844.png)
 
 添加缓存插件`hard-source-webpack-plugin`（当然也可以添加cache-loader）
 
@@ -190,11 +190,11 @@ moudle.exports = {
 
 babel-loader配置如下：
 
-![image-20190119180033334](../images/webpack构建和性能优化探索/image-20190119180033334.png)
+![image-20190119180033334](https://raw.githubusercontent.com/yacan8/blog/master/images/webpack%E6%9E%84%E5%BB%BA%E5%92%8C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%8E%A2%E7%B4%A2/image-20190119180033334.png)
 
 less-loader配置如下：
 
-![image-20190119180113456](../images/webpack构建和性能优化探索/image-20190119180113456.png)
+![image-20190119180113456](https://raw.githubusercontent.com/yacan8/blog/master/images/webpack%E6%9E%84%E5%BB%BA%E5%92%8C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%8E%A2%E7%B4%A2/image-20190119180113456.png)
 
 构建结果如下：
 
@@ -304,11 +304,11 @@ console.log(str);
 
 下面是无Scope-Hoisting结果：
 
-![image-20190119194535595](../images/webpack构建和性能优化探索/image-20190119194535595.png)
+![image-20190119194535595](https://raw.githubusercontent.com/yacan8/blog/master/images/webpack%E6%9E%84%E5%BB%BA%E5%92%8C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%8E%A2%E7%B4%A2/image-20190119194535595.png)
 
 然后是Scope-Hoisting后的结果：
 
-![image-20190119194554573](../images/webpack构建和性能优化探索/image-20190119194554573.png)
+![image-20190119194554573](https://raw.githubusercontent.com/yacan8/blog/master/images/webpack%E6%9E%84%E5%BB%BA%E5%92%8C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%8E%A2%E7%B4%A2/image-20190119194554573.png)
 
 与Tree-Shaking类似，使用Scope-Hoisting的前提也是必须是ES6模块，除此之外，还需要加入webpack内置插件，位于webpack文件夹，`webpack/lib/optimize/ModuleConcatenationPlugin`，配置如下：
 

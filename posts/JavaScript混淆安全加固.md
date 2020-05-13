@@ -287,7 +287,7 @@ var c = _0x3fa24() ? : _0x513fa(1, 2) : _0x3f632(1, 2);
 
 流程图如下：
 
-![控制流扁平化3](../images/JavaScript混淆安全加固/3.jpeg)
+![控制流扁平化3](https://raw.githubusercontent.com/yacan8/blog/master/images/JavaScript%E6%B7%B7%E6%B7%86%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA/3.jpeg)
 
 混淆过后代码如下：
 
@@ -319,7 +319,7 @@ var c = _0x3fa24() ? : _0x513fa(1, 2) : _0x3f632(1, 2);
 
 混淆过后的流程图如下：
 
-![控制流扁平化4](../images/JavaScript混淆安全加固/4.jpeg)
+![控制流扁平化4](https://raw.githubusercontent.com/yacan8/blog/master/images/JavaScript%E6%B7%B7%E6%B7%86%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA/4.jpeg)
 
 流程看起来`扁`了。
 
@@ -351,7 +351,7 @@ function modexp(y, x, w, n) {
 
 如上代码，流程图是这样的
 
-![控制流扁平化1](../images/JavaScript混淆安全加固/1.jpeg)
+![控制流扁平化1](https://raw.githubusercontent.com/yacan8/blog/master/images/JavaScript%E6%B7%B7%E6%B7%86%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA/1.jpeg)
 
 控制流扁平化后代码如下：
 
@@ -375,7 +375,7 @@ function modexp(y, x, w, n) {
 
 混淆后的流程图如下：
 
-![控制流扁平化2](../images/JavaScript混淆安全加固/2.jpeg)
+![控制流扁平化2](https://raw.githubusercontent.com/yacan8/blog/master/images/JavaScript%E6%B7%B7%E6%B7%86%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA/2.jpeg)
 
 直观的感觉就是代码变`扁`了，所有的代码都挤到了一层当中，这样做的好处在于在让攻击者无法直观，或通过静态分析的方法判断哪些代码先执行哪些后执行，必须要通过动态运行才能记录执行顺序，从而加重了分析的负担。
 

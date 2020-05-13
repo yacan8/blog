@@ -18,13 +18,13 @@ tags:
 * 了解 Vue.js 的响应式系统原理
 * 了解 Vue.js 中的 Virtual DOM 及 Diff 原理
 
-[分享 keynote](../images/聊聊对Vue.js框架的理解/Vue.js框架原理剖析.key)
+[分享 keynote](https://github.com/yacan8/blog/blob/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/Vue.js%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90.key)
 
 ## Vue.js概述
 
 Vue 是一套用于构建用户界面的渐进式MVVM框架。那怎么理解`渐进式`呢？渐进式含义：强制主张最少。
 
-![渐进式概念](../images/聊聊对Vue.js框架的理解/1-1.png)
+![渐进式概念](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/1-1.png)
 
 Vue.js包含了声明式渲染、组件化系统、客户端路由、大规模状态管理、构建工具、数据持久化、跨平台支持等，但在实际开发中，并没有强制要求开发者之后某一特定功能，而是根据需求逐渐扩展。
 
@@ -288,7 +288,7 @@ slot 实现原理：当子组件`vm`实例化时，获取到父组件传入的 s
 
 至此，父子组件的关系如下图：
 
-![img](../images/聊聊对Vue.js框架的理解/1-2.png)
+![img](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/1-2.png)
 
 ### 模板渲染
 
@@ -317,7 +317,7 @@ Vue.js 实现了if、for、事件、数据绑定等指令，允许采用简洁�
 
 模板编译分三个阶段，`parse`、`optimize`、`generate`，最终生成`render`函数。
 
-![img](../images/聊聊对Vue.js框架的理解/1-3.png)
+![img](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/1-3.png)
 
 `parse`阶段：使用正在表达式将`template`进行字符串解析，得到指令、class、style等数据，生成抽象语法树 AST。
 
@@ -417,7 +417,7 @@ Watcher 扮演的角色是订阅者/观察者，他的主要作用是为观察�
 
 ### 小结
 
-![响应式系统](../images/聊聊对Vue.js框架的理解/2-1.png)
+![响应式系统](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/2-1.png)
 
 Observer 负责将数据进行拦截，Watcher 负责订阅，观察数据变化， Dep 负责接收订阅并通知 Observer 和接收发布并通知所有 Watcher。
 
@@ -425,7 +425,7 @@ Observer 负责将数据进行拦截，Watcher 负责订阅，观察数据变化
 
 在 Vue 中，`template`被编译成浏览器可执行的`render function`，然后配合响应式系统，将`render function`挂载在`render-watcher`中，当有数据更改的时候，调度中心`Dep`通知该`render-watcher`执行`render function`，完成视图的渲染与更新。
 
-![DOM更新](../images/聊聊对Vue.js框架的理解/3-1.png)
+![DOM更新](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/3-1.png)
 
 整个流程看似通顺，但是当执行`render function`时，如果每次都全量删除并重建 DOM，这对执行性能来说，无疑是一种巨大的损耗，因为我们知道，浏览器的DOM很“昂贵”的，当我们频繁的更新 DOM，会产生一定的性能问题。
 
@@ -456,7 +456,7 @@ Diff 将新老 VNode 节点进行比对，然后将根据两者的比较结果�
 
 Vue.js 内部的 diff 被称为`patch`。其 diff 算法的是通过同层的树节点进行比较，而非对树进行逐层搜索遍历的方式，所以时间复杂度只有O(n)，是一种相当高效的算法。
 
-![DIFF](../images/聊聊对Vue.js框架的理解/3-2.png)
+![DIFF](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/3-2.png)
 
 首先定义新老节点是否相同判定函数`sameVnode`：满足键值`key`和标签名`tag`必须一致等条件，返回`true`，否则`false`。
 
@@ -484,7 +484,7 @@ Diff 的核心，对比新老子节点数据，判定如何对子节点进行操
 
 每一次遍历，`oldStartIdx`和`oldEndIdx`与`newStartIdx`和`newEndIdx`之间的距离会向中间靠拢。当 oldStartIdx > oldEndIdx 或者 newStartIdx > newEndIdx 时结束循环。
 
-![img](../images/聊聊对Vue.js框架的理解/3-3.png)
+![img](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/3-3.png)
 
 在遍历中，取出4索引对应的 Vnode节点：
 
@@ -499,47 +499,47 @@ diff 过程中，如果存在`key`，并且满足`sameVnode`，会将该 DOM 节
 
 情况一：当`oldStartVnode`与`newStartVnode`满足 sameVnode，则`oldStartVnode`与`newStartVnode`进行 patchVnode，并且`oldStartIdx`与`newStartIdx`右移动。
 
-![img](../images/聊聊对Vue.js框架的理解/3-4.png)
+![img](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/3-4.png)
 
 情况二：与情况一类似，当`oldEndVnode`与`newEndVnode`满足 sameVnode，则`oldEndVnode`与`newEndVnode`进行 patchVnode，并且`oldEndIdx`与`newEndIdx`左移动。
 
-![img](../images/聊聊对Vue.js框架的理解/3-5.png)
+![img](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/3-5.png)
 
 情况三：当`oldStartVnode`与`newEndVnode`满足 sameVnode，则说明`oldStartVnode`已经跑到了`oldEndVnode`后面去了，此时`oldStartVnode`与`newEndVnode`进行 patchVnode 的同时，还需要将`oldStartVnode`的真实 DOM 节点移动到`oldEndVnode`的后面，并且`oldStartIdx`右移，`newEndIdx`左移。
 
-![img](../images/聊聊对Vue.js框架的理解/3-6.png)
+![img](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/3-6.png)
 
 情况四：与情况三类似，当`oldEndVnode`与`newStartVnode`满足 sameVnode，则说明`oldEndVnode`已经跑到了`oldStartVnode`前面去了，此时`oldEndVnode`与`newStartVnode`进行 patchVnode 的同时，还需要将`oldEndVnode`的真实 DOM 节点移动到`oldStartVnode`的前面，并且`oldStartIdx`右移，`newEndIdx`左移。
 
-![img](../images/聊聊对Vue.js框架的理解/3-7.png)
+![img](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/3-7.png)
 
 当这四种情况都不满足，则在`oldStartIdx`与`oldEndIdx`之间查找与`newStartVnode`满足`sameVnode`的节点，若存在，则将匹配的节点真实 DOM 移动到`oldStartVnode`的前面。
 
-![img](../images/聊聊对Vue.js框架的理解/3-8.png)
+![img](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/3-8.png)
 
 若不存在，说明`newStartVnode`为新节点，创建新节点放在`oldStartVnode`前面即可。
 
-![img](../images/聊聊对Vue.js框架的理解/3-9.png)
+![img](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/3-9.png)
 
 当 oldStartIdx > oldEndIdx 或者 newStartIdx > newEndIdx，循环结束，这个时候我们需要处理那些未被遍历到的 VNode。
 
 当 oldStartIdx > oldEndIdx 时，说明老的节点已经遍历完，而新的节点没遍历完，这个时候需要将新的节点创建之后放在`oldEndVnode`后面。
 
-![img](../images/聊聊对Vue.js框架的理解/3-10.png)
+![img](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/3-10.png)
 
 当 newStartIdx > newEndIdx 时，说明新的节点已经遍历完，而老的节点没遍历完，这个时候要将没遍历的老的节点全都删除。
 
-![img](../images/聊聊对Vue.js框架的理解/3-11.png)
+![img](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/3-11.png)
 
 此时已经完成了子节点的匹配。下面是一个例子 patch 过程图：
 
-![patchChildren](../images/聊聊对Vue.js框架的理解/patchChildren.gif)
+![patchChildren](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/patchChildren.gif)
 
 ## 总结
 
 借用官方的一幅图：
 
-![final](../images/聊聊对Vue.js框架的理解/final.png)
+![final](https://raw.githubusercontent.com/yacan8/blog/master/images/%E8%81%8A%E8%81%8A%E5%AF%B9Vue.js%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3/final.png)
 
 Vue.js 实现了一套声明式渲染引擎，并在`runtime`或者预编译时将声明式的模板编译成渲染函数，挂载在观察者 Watcher 中，在渲染函数中（touch），响应式系统使用响应式数据的`getter`方法对观察者进行依赖收集（Collect as Dependency），使用响应式数据的`setter`方法通知（notify）所有观察者进行更新，此时观察者 Watcher 会触发组件的渲染函数（Trigger re-render），组件执行的 render 函数，生成一个新的 Virtual DOM Tree，此时 Vue 会对新老 Virtual DOM Tree 进行 Diff，查找出需要操作的真实 DOM 并对其进行更新。
 

@@ -9,7 +9,7 @@ tags:
 
 ## 引言
 
-最近新项目过多，在新项目中每次使用 webpack 都是拷贝之前的项目的配置文件过来，改改直接使用，很多配置还是一知半解，一直想用心的从头配置一次 webpack，加深对 webpack 的理解，所以，有了本文，先献上以下内容[github地址](https://github.com/yacan8/webpack-config-tool)。
+最近新项目过多，在新项目中每次使用 webpack 都是拷贝之前的项目的配置文件过来，改改直接使用，很多配置还是一知半解，一直想用心的从头配置一次 webpack，加深对 webpack 的理解，所以，有了本文，先献上以下内容[github地址](https://github.com/yacan8/webpack-config-tool)。
 
 ## 基本配置 webpack.base.config.js
 
@@ -21,7 +21,7 @@ const base = {
 }
 ```
 
-自 webpack4 起，webpack 提供了默认 entry，也就是我们上面使用的 `'./src/index'`，这里我们用数组包裹一下，方便动态增删，往下
+自 webpack4 起，webpack 提供了默认 entry，也就是我们上面使用的 `'./src/index'`，这里我们用数组包裹一下，方便动态增删，往下
 
 配置 output：
 
@@ -140,7 +140,7 @@ const base = {
 }
 ```
 
-splitChunks 配置的 `chunks: 'all'` 会改变html的引进的脚本，加了chunksHash后每次编译的结果会不一致，需要结合html-webpack-plugin 使用。
+splitChunks 配置的 `chunks: 'all'` 会改变html的引进的脚本，加了chunksHash后每次编译的结果会不一致，需要结合html-webpack-plugin 使用。
 
 下面添加 plugins
 
@@ -477,7 +477,7 @@ dllPlugin的原理就是预先编译模块，然后在html中最先引进这些�
 
 下面我们使用配置使用 dllPlugin，新建配置文件 webpack.dll.config.js，这个文件为 webpack 需要事先编译的配置文件
 
-首先声明输出 output 
+首先声明输出 output 
 
 ```js
 const path = require('path');
