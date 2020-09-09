@@ -48,6 +48,7 @@
 * [前端知识杂项(二)](./posts/前端知识杂项(二).md)
 * [一年半经验，百度、有赞、阿里面试总结](https://github.com/yacan8/blog/issues/18)
 * [记一次前端面试的全过程](https://github.com/yacan8/blog/issues/19)
+* [一次关于Vue的自我模拟面试](https://github.com/yacan8/blog/issues/31)
 
 ## 前端综合
 
