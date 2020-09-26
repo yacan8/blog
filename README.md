@@ -56,3 +56,4 @@
 * [浅谈浏览器多进程与JS线程](https://github.com/yacan8/blog/issues/8)
 * [浅谈前端技术的发展](https://github.com/yacan8/blog/issues/12)
 * [浏览器工作原理](https://github.com/yacan8/blog/issues/28)
+* [深入理解Chrome V8垃圾回收机制](https://github.com/yacan8/blog/issues/33)

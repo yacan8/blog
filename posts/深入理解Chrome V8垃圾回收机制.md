@@ -84,7 +84,7 @@ someElement.addEventListener('click', function(){
 
 Scavange算法将新生代堆分为两部分，分别叫`from-space`和`to-space`，工作方式也很简单，就是将`from-space`中存活的活动对象复制到`to-space`中，并将这些对象的内存有序的排列起来，然后将`from-space`中的非活动对象的内存进行释放，完成之后，将`from space` 和`to space`进行互换，这样可以使得新生代中的这两块区域可以重复利用。
 
-![image-20200925123816388](../images/深入理解Chrome V8垃圾回收机制/image-20200925123816388.png)
+![image-20200925123816388](https://raw.githubusercontent.com/yacan8/blog/master/images/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Chrome%20V8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/image-20200925123816388.png)
 
 简单的描述就是：
 
@@ -117,7 +117,7 @@ Mark-Sweep处理时分为两阶段，标记阶段和清理阶段，看起来与S
 * 标记阶段：对老生代进行第一次扫描，标记活动对象
 * 清理阶段：对老生代进行第二次扫描，清除未被标记的对象，即清理非活动对象
 
-![image-20200925163922575](../images/深入理解Chrome V8垃圾回收机制/image-20200925163922575.png)
+![image-20200925163922575](https://raw.githubusercontent.com/yacan8/blog/master/images/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Chrome%20V8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/image-20200925163922575.png)
 
 看似一切 perfect，但是还遗留一个问题，被清除的对象遍布于各内存地址，产生很多内存碎片。
 
@@ -127,7 +127,7 @@ Mark-Sweep处理时分为两阶段，标记阶段和清理阶段，看起来与S
 
 为了解决内存碎片问题，Mark-Compact被提出，它是在是在 Mark-Sweep的基础上演进而来的，相比Mark-Sweep，Mark-Compact添加了活动对象整理阶段，将所有的活动对象往一端移动，移动完成后，直接清理掉边界外的内存。
 
-![image-20200925165403080](../images/深入理解Chrome V8垃圾回收机制/image-20200925165403080.png)
+![image-20200925165403080](https://raw.githubusercontent.com/yacan8/blog/master/images/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Chrome%20V8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/image-20200925165403080.png)
 
 ## 全停顿 Stop-The-World
 
@@ -143,7 +143,7 @@ orinoco为V8的垃圾回收器的项目代号，为了提升用户体验，解�
 
 为了降低全堆垃圾回收的停顿时间，增量标记将原本的标记全堆对象拆分为一个一个任务，让其穿插在JavaScript应用逻辑之间执行，它允许堆的标记时的5~10ms的停顿。增量标记在堆的大小达到一定的阈值时启用，启用之后每当一定量的内存分配后，脚本的执行就会停顿并进行一次增量标记。
 
-![image-20200925174126280](../images/深入理解Chrome V8垃圾回收机制/image-20200925174126280.png)
+![image-20200925174126280](https://raw.githubusercontent.com/yacan8/blog/master/images/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Chrome%20V8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/image-20200925174126280.png)
 
 ### 懒性清理 - Lazy sweeping
 
@@ -158,13 +158,13 @@ orinoco为V8的垃圾回收器的项目代号，为了提升用户体验，解�
 
 并发式GC允许在在垃圾回收的同时不需要将主线程挂起，两者可以同时进行，只有在个别时候需要短暂停下来让垃圾回收器做一些特殊的操作。但是这种方式也要面对增量回收的问题，就是在垃圾回收过程中，由于JavaScript代码在执行，堆中的对象的引用关系随时可能会变化，所以也要进行`写屏障`操作。
 
-![image-20200926003554103](../images/深入理解Chrome V8垃圾回收机制/image-20200926003554103.png)
+![image-20200926003554103](https://raw.githubusercontent.com/yacan8/blog/master/images/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Chrome%20V8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/image-20200926003554103.png)
 
 ### 并行 - Parallel
 
 并行式GC允许主线程和辅助线程同时执行同样的GC工作，这样可以让辅助线程来分担主线程的GC工作，使得垃圾回收所耗费的时间等于总时间除以参与的线程数量（加上一些同步开销）。
 
-![image-20200926004058072](../images/深入理解Chrome V8垃圾回收机制/image-20200926004058072.png)
+![image-20200926004058072](https://raw.githubusercontent.com/yacan8/blog/master/images/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Chrome%20V8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/image-20200926004058072.png)
 
 ## V8当前垃圾回收机制
 
@@ -174,7 +174,7 @@ orinoco为V8的垃圾回收器的项目代号，为了提升用户体验，解�
 
 V8在新生代垃圾回收中，使用并行（parallel）机制，在整理排序阶段，也就是将活动对象从`from-to`复制到`space-to`的时候，启用多个辅助线程，并行的进行整理。由于多个线程竞争一个新生代的堆的内存资源，可能出现有某个活动对象被多个线程进行复制操作的问题，为了解决这个问题，V8在第一个线程对活动对象进行复制并且复制完成后，都必须去维护复制这个活动对象后的指针转发地址，以便于其他协助线程可以找到该活动对象后可以判断该活动对象是否已被复制。
 
-![image-20200926103100834](../images/深入理解Chrome V8垃圾回收机制/image-20200926103100834.png)
+![image-20200926103100834](https://raw.githubusercontent.com/yacan8/blog/master/images/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Chrome%20V8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/image-20200926103100834.png)
 
 ### 主垃圾回收器
 
@@ -182,7 +182,7 @@ V8在老生代垃圾回收中，如果堆中的内存大小超过某个阈值之
 
 当并发标记完成或者动态分配的内存到达极限的时候，主线程会执行最终的快速标记步骤，这个时候主线程会挂起，主线程会再一次的扫描根集以确保所有的对象都完成了标记，由于辅助线程已经标记过活动对象，主线程的本次扫描只是进行check操作，确认完成之后，某些辅助线程会进行清理内存操作，某些辅助进程会进行内存整理操作，由于都是并发的，并不会影响主线程JavaScript代码的执行。
 
-![image-20200926105712369](../images/深入理解Chrome V8垃圾回收机制/image-20200926105712369.png)
+![image-20200926105712369](https://raw.githubusercontent.com/yacan8/blog/master/images/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Chrome%20V8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/image-20200926105712369.png)
 
 ## 结束
 
@@ -199,4 +199,4 @@ V8在老生代垃圾回收中，如果堆中的内存大小超过某个阈值之
 * [垃圾回收技术](https://www.cnblogs.com/suihang/p/12840671.html)
 * [4类 JavaScript 内存泄漏及如何避免](https://jinlong.github.io/2016/05/01/4-Types-of-Memory-Leaks-in-JavaScript-and-How-to-Get-Rid-Of-Them/)
 * [内存管理](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management)
-* [Nodejs中的内存管理和V8垃圾回收机制][https://www.nodejs.red/#/nodejs/memory]
+* [Nodejs中的内存管理和V8垃圾回收机制](https://www.nodejs.red/#/nodejs/memory)
