@@ -43,9 +43,7 @@
 
 ### poll
 
-![poll](https://camo.githubusercontent.com/1633630fb3740e71a86330df5c0e9a44e5c6127c/68747470733a2f2f757365722d676f6c642d63646e2e786974752e696f2f323032302f332f322f313730393935316536356666653030653f696d616765736c696d)
-
-
+![image-20201222125647264](/Users/baidu/Library/Application Support/typora-user-images/image-20201222125647264.png)
 
 这里主要说明 node11 前后的差异，因为 node11 之后一些特性向浏览器看齐，总的变化一句话来说就是
 
